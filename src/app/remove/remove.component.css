@@ -1,0 +1,16 @@
+button {
+    background-color: lightcoral;
+    position: absolute; 
+    top: 0.5rem;
+    right: 0.5rem;
+    color: white;
+    padding: 0 8px;    
+    border: none;
+    z-index:1;
+}
+button:hover{
+    background-color: rgb(243, 106, 106);
+}
+button:active{
+    background-color: rgb(250, 71, 71);
+}

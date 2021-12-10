@@ -1,0 +1,22 @@
+.toCart{
+    background-color: indianred;
+    /* margin-left: 5px; */
+    color: white;
+    border: none;
+    width: 2rem;
+    position: absolute;
+}
+.add{
+    right: 2.2rem;
+    top: 0;
+}
+.disabled {
+    display: none;
+}
+.remove{
+    right: 0;
+    top: 0;
+}
+.cart:active {
+    background-color: #de4a4a;
+}
