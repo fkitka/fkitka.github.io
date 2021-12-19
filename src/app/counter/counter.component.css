@@ -1,0 +1,19 @@
+.counter {
+    display: block;
+    text-align: center;
+    width: fit-content;
+    padding: 0 3rem;
+    font-size: 2rem;
+    box-shadow: inset grey 0 1px 2px;
+    /* justify-self: center; */
+    margin: auto;
+    margin-bottom: 5rem;
+    border-radius: 50px;
+    color: white;
+}
+.lowOrders{
+    background-color: #e9a572;
+}
+.highOrders{
+    background-color: rgb(94, 164, 208);
+}

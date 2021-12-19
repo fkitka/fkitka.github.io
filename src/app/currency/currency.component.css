@@ -1,8 +1,62 @@
-.currency{
+/* .currency{
     display:block;
     background-color: rgb(216, 216, 216);
     width:4rem;
     font-size: 1rem;
     padding: 10px 10px 10px 5px;
     margin-left: 1rem;
+} */
+
+input[type="checkbox"]{
+    position: relative;
+    width:50px;
+    height: 20px;
+    appearance: none;
+    border-radius: 20px;
+    outline: none;
+    transition: 0.3s;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    background: rgb(255, 255, 255);
+}
+input:checked[type="checkbox"]{
+    background-color: #f29e5f;
+}
+
+input[type="checkbox"]::before{
+    z-index: 2;
+    position: absolute;
+    content: '';
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    transform: scale(1.1);
+    box-shadow:  0 2px 5px rgba(0,0,0,0.2);
+}
+input:checked[type="checkbox"]::before{
+    left: 30px;
+}
+.toggle{
+    position: relative;
+    display: inline;
+}
+label{
+    position: absolute;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+.onbtn{
+    bottom: 1px;
+    left: 8px;
+
+}
+.offbtn{
+    bottom: 1px;
+    right: 8px;
+    color: rgb(163, 163, 163);
 }

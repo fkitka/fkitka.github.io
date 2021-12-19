@@ -1,52 +1,33 @@
-<div class="subheader">
-    <app-currency (currentCurrencyChange)=setCurrency($event)></app-currency>
-    <div class="counter"[ngClass]="{'lowOrders': onOrder < 10, 'highOrders': onOrder >= 10}">{{ onOrder }}</div>
-    <app-cart [items]="menuItems" [currentCurrency]="currentCurrency"></app-cart>
-</div>
-<!-- <app-filter [(dishes)]="dishes" [cuisines]="cuisines" [types]="types" [times]="times" 
-(selectedValueToFilter)="setFilterValue($event)" (selectedCategoryToFilter)="setFilterCategory($event)" (filter)="reloadDishes()"></app-filter> -->
+<header>
+    <app-filter (cuisineChange)="changeCuisine($event)" 
+                (typeChange)="changeType($event)"
+                (timeChange)="changeTime($event)"
+                (ratingChange)="changeRating($event)"
+                (filterReset)="changeFiltering()">
+    </app-filter>
+    <app-counter></app-counter>
+</header>
+<div class="pagination"><app-pagination></app-pagination></div>
 <div class="container"> 
-    <div class="card" *ngFor="let dish of dishes"
+    <div class="card" *ngFor="let dish of (dishes | filterdishes:selectedCuisine:selectedType:selectedTime:selectedRating).slice(0 + (pageNum-1)*elementsOnPage,elementsOnPage + (pageNum-1)*elementsOnPage)"
     [ngClass]="{
             'shortage': (dish.amount - dish.ordered) <= 3, 
             'max': dish.id == maxPriceDish.id, 'min': dish.id == minPriceDish.id, 
             'nomore': (dish.amount - dish.ordered) == 0
         }">
         <app-remove [currentDish]="dish"
-         (itemRemoved)=(onItemRemoved($event)) 
-        (counterChange)="onOrderChange($event)"
-        ></app-remove>
+        (itemRemoved)=(onItemRemoved($event)) >
+    </app-remove>
         <div class="dishImage">
-            <img src="assets/img/{{dish.pictures.split(',')[0]}}" alt="Image" [ngClass]="{'stock-out': (dish.amount - dish.ordered) == 0}">
+            <a [routerLink]="['/dish', dish.id]" (click)="setCurrentDish(dish)"><img src="assets/img/{{dish.pictures.split(',')[0]}}" alt="Image" [ngClass]="{'stock-out': (dish.amount - dish.ordered) == 0}"></a>
         </div>
         <div class="content">
-            <header>
-                <h3>{{dish.name | uppercase}}</h3>
-                <h4>{{dish.cuisine | uppercase}}</h4>
-                <h5>{{dish.type}} | {{dish.time}}</h5>
-                <app-items [currentDish]="dish" [(counter)]="onOrder" [(menuItems)]="menuItems"></app-items>
+            <header class="dishHeader">
+            <h3>{{dish.name | uppercase}}</h3>
+            <div class="price">{{dish.price * currency.converter}}{{currency.symbol}}</div>
+            <div class="left">Pozostało: {{dish.amount-dish.ordered}}</div>
+            <app-items [currentDish]="dish" [(menuItems)]="menuItems" class="toCartItems"></app-items>
             </header>
-            <section class="details">
-            <ul class="ingredients">
-                <h6>Lista składników</h6>
-                <li *ngFor="let ingredient of dish.ingredients.split(',')">
-                    {{ingredient}}
-                </li>
-            </ul>
-            <aside>
-                <div class="left">Pozostało: {{dish.amount-dish.ordered}}</div>
-                <div class="price">Cena: {{dish.price * currentCurrency.converter}}{{currentCurrency.symbol}}</div>
-            </aside>
-            
-            </section>
-            <footer>
-                <p class="description">{{dish.description}}</p>
-                <br>
-                <section class="flex-footer">
-                <app-rate [(rating)]="dish.rating"></app-rate>
-                <div><a href=#>{{dish.link}}</a></div>
-                </section>
-            </footer>
         </div>
     </div>
 </div>

@@ -1,0 +1,42 @@
+<nav>
+    <ul class="list">
+        <div class="hamburger">
+            <input id="hamburger-check" type="checkbox">
+            <label for="hamburger-check">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <section class="hamburgerlist">
+                <a class="hamburgeritem" routerLink="">
+                    <div>Home</div>
+                </a>
+                <a class="hamburgeritem" [routerLink]="['/dishes', 1]">
+                    <div>Dishes</div>
+                </a>
+                <a class="hamburgeritem" routerLink="add">
+                    <div >Add</div>
+                </a>
+                <a class="hamburgeritem" routerLink="cart">
+                    <div >Cart</div>
+                </a>
+            </section>
+        </div>
+        <div class="header"><h4>Restaurant</h4></div>
+        <a class="item" routerLink="" >
+            <li routerLinkActive="active" class="home">Home</li>
+        </a>
+        <a class="item" [routerLink]="['/dishes', 1]">
+            <li routerLinkActive="active">Dishes</li>
+        </a>
+        <a class="item" routerLink="add">
+            <li routerLinkActive="active">Add</li>
+        </a>
+        <a class="item" routerLink="cart">
+            <li routerLinkActive="active">Cart</li>
+        </a>
+        <li class="item currency">
+            <app-currency></app-currency>
+        </li>
+    </ul>
+</nav>

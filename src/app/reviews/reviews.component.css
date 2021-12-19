@@ -1,0 +1,54 @@
+.form-container{
+    border-top: lightgrey 1px solid;
+    padding: 2rem;
+}
+
+textarea {
+    width: 100%;
+    resize: none;
+    height: 100px;
+    padding: 5px 5px 5px 12px;
+}
+.form-group{
+    display: block;
+    margin: 1rem 0 1rem 0;
+}
+
+input.ng-invalid, textarea.ng-invalid {
+    border-left: solid red 5px
+}
+
+input.ng-valid, textarea.ng-valid{
+    border-left: solid green 5px;
+}
+.alert-danger{
+    padding: 5px;
+}
+.list-item{
+    list-style-type: none;
+    margin: 1rem;
+}
+.reviewhead{
+    display: flex;
+    position: relative;
+    flex-flow: column;
+    align-items: flex-start;
+}
+.name{
+    font-size: 1.5rem;
+}
+.date{
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: grey;
+    font-size: 1rem;
+}
+
+.rating{
+    width: 130px;
+    height: 30px;
+}
+.content{
+    word-wrap: break-word;
+}

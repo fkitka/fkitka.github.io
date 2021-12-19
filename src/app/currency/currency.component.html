@@ -1,6 +1,7 @@
 <div class="currency">
-    <label>
-        Waluta: {{currentCurrency.symbol}}
+    <div class="toggle">
         <input type="checkbox" (change)="changeCurrency()">
-    </label>
+        <label for="" class="onbtn">€</label>
+        <label for="" class="offbtn">$</label>
+    </div>
 </div>

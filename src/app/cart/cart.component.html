@@ -1,14 +1,15 @@
-<button type="submit" class="cart" (click)="openCart()">🛒</button>
-<main class="container" [ngClass]="{'hidden': isHidden, 'show': !isHidden}">
+<main class="container">
+<div class="cart">
+    <h2>Twój koszyk</h2>
     <section class="items">
-        <h5>Twój koszyk</h5>
         <div class="cart-item" *ngFor="let item of items">
             <span>{{ item.ordered }} x {{ item.name }} </span>
-            <span>{{ item.price * currentCurrency.converter }} {{ currentCurrency.symbol }}</span>
+            <span>{{ item.price * currency.converter }} {{ currency.symbol }}</span>
         </div>  
     </section>
     <footer>
-        <div class="total">Total: {{ sum(items) }}{{currentCurrency.symbol}}</div>
+        <div class="total">Total: {{ sum(items) }}{{currency.symbol}}</div>
         <button class="purchase" type="submit">Purchase</button>
     </footer>
+</div>
 </main>

@@ -1,2 +1,4 @@
+<div class="container">
 <button type="submit"class="toCart add" (click)="addItemToCart(currentDish)" [ngClass]="{'disabled': (currentDish.amount - currentDish.ordered) == 0}">+</button>
 <button type="submit"class="toCart remove"(click)="removeItemFromCart(currentDish)">-</button>
+</div>

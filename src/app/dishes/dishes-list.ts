@@ -12,7 +12,7 @@ export const DISHES: Dish[] = [
         ordered: 0,
         price: 10,
         description: "Tradycyjna zupa polska",
-        pictures: "rosol.jpg",
+        pictures: "rosol.jpg,tamagoyaki.jpg,lasagna.jpg,nalesniki.jpg",
         link: "Zdjęcie",
         rating: 0
     },

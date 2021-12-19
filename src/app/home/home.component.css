@@ -1,0 +1,123 @@
+main{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../assets/img/inside1.jpg");
+    background-color: rgb(145, 139, 128);
+    background-blend-mode: darken;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+}
+.title{
+    font-family: "Roboto", sans-serif;
+    width: fit-content;
+    color: rgb(255, 255, 255);
+    margin-right: auto;
+    margin-top: -10rem;
+}
+.name{
+    display: block;
+    border-bottom: solid 5px rgb(255, 255, 255);
+    text-align: center;
+    font-size: 4.8vw;
+}
+.subname{
+    font-size: 1.8vw;
+    font-weight: 300;
+}
+.contactcard{
+    margin-right: auto;
+    background-color: white;
+    display: flex;
+    flex-flow:column nowrap;
+    gap: 4rem;
+    opacity: 0.9;
+    align-self: flex-start;
+    width: 520px;
+    height: fit-content;
+    padding: 2rem;
+}
+.address, .phone, .mail{
+    position: relative;
+    padding: 8px;
+    padding-left: 2rem;
+}
+.icon-map, .icon-phone, .icon-mail{
+    position: absolute;
+    padding: 10px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    left: 0;
+}
+.icon-map{
+    background-image: url("../../assets/img/map.png");
+}
+.icon-phone{
+    background-image: url("../../assets/img/call.png");
+}
+.icon-mail{
+    background-image: url("../../assets/img/mail.png");
+}
+.find {
+    width: fit-content;
+}
+.map{
+    margin-top: 2rem;
+    background-image: url("../../assets/img/mapa.jpg");
+    width: 450px;
+    height: 350px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+footer{
+    display: none;
+}
+
+@media (max-width: 1050px){
+    main{
+        flex-flow: column nowrap;
+        height: 94%;
+    }
+    .contactcard{
+        display: none;
+    }
+    .title{
+        margin: 0;
+        margin-top: auto;
+    }
+    .name{
+        font-size: 10vw;
+    }
+    .subname{
+        font-size: 5vw;
+    }
+    .postal, .street{
+        position: relative;
+        padding: 8px;
+        /* padding-left: 2rem; */
+    }
+    .icon-map{
+        position: absolute;
+        left: -1rem;
+    }
+    footer{
+        margin-top: auto;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: flex-start;
+        background-color: #cb9367;
+        width: 100%;
+        color: white;
+        height: fit-content;
+        padding: 1rem;
+        font-size: 2vw;
+    }
+}
+@media (max-width: 600px){
+    footer{
+        font-size: 3vw;
+    }
+}

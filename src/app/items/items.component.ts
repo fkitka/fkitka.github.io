@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Dish } from '../dishes/dish';
+import { CounterService } from '../services/counter.service';
 
 @Component({
   selector: 'app-items',
@@ -8,20 +9,20 @@ import { Dish } from '../dishes/dish';
 })
 export class ItemsComponent implements OnInit {
   @Input() currentDish!: Dish;
-  @Input() counter!: number;
-  @Output() counterChange = new EventEmitter<number>();
+  counter!: number;
   @Input() menuItems!: Dish[];
   @Output() menuItemsChange = new EventEmitter<Dish[]>();
-  constructor() {
+  constructor(private counterService: CounterService) {
    }
 
   ngOnInit(): void {
+    this.counterService.currentCounter.subscribe(counter => this.counter = counter);
   }
   addItemToCart(dish: Dish){
     if (dish.amount - dish.ordered > 0){
       dish.ordered += 1;
       this.counter += 1;
-      this.counterChange.emit(this.counter);
+      this.counterService.changeCounter(this.counter);
       if (dish.ordered == 1){
         this.menuItems.push(dish);
       }
@@ -35,7 +36,7 @@ export class ItemsComponent implements OnInit {
         let index = this.menuItems.indexOf(dish);
         this.menuItems.splice(index, 1);
       }
-      this.counterChange.emit(this.counter);
+      this.counterService.changeCounter(this.counter);
     }
   }
 }

@@ -1,22 +1,18 @@
+.container{
+    display: flex;
+    gap: 10px;
+}
+
 .toCart{
-    background-color: indianred;
-    /* margin-left: 5px; */
+    background-color: #cb9367;
     color: white;
     border: none;
     width: 2rem;
-    position: absolute;
+    display: block;
 }
-.add{
-    right: 2.2rem;
-    top: 0;
+.toCart:hover{
+    background-color: #db9a69;
 }
-.disabled {
-    display: none;
-}
-.remove{
-    right: 0;
-    top: 0;
-}
-.cart:active {
-    background-color: #de4a4a;
+.toCart:active{
+    background-color: #e49051;
 }

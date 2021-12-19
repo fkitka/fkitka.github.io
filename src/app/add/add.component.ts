@@ -8,7 +8,6 @@ import { DISHES } from '../dishes/dishes-list';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
-  isHidden: boolean;
   noWhitespaceRegex = /^(\w+\S+)$/;
   imageRegex = /([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
   addDishForm = new FormGroup({
@@ -25,7 +24,7 @@ export class AddComponent implements OnInit {
     pictures: new FormControl("", [Validators.required, Validators.pattern(this.noWhitespaceRegex), Validators.pattern(this.imageRegex)]),
     link: new FormControl(),
   });
-  constructor() { this.isHidden = true; }
+  constructor() { }
 
   
   ngOnInit(): void {
@@ -38,8 +37,6 @@ export class AddComponent implements OnInit {
   onSubmit(){
     console.log(DISHES)
     DISHES.push(this.addDishForm.value);
-  }
-  addDishToggle(){
-    this.isHidden = !this.isHidden;
+    this.addDishForm.reset();
   }
 }

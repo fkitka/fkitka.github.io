@@ -13,8 +13,19 @@ import { AddComponent } from './add/add.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StarComponent } from './star/star.component';
-import { CallbackPipe } from './callback.pipe';
-
+import { FilterDishesPipe } from './pipes/filterdishes.pipe';
+import { HomeComponent } from './home/home.component';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { MenuComponent } from './menu/menu.component';
+import { CartService } from './services/cart.service';
+import { CurrencyService } from './services/currency.service';
+import { DishService } from './services/dish.service';
+import { CounterService } from './services/counter.service';
+import { DishdetailsComponent } from './dishdetails/dishdetails.component';
+import { CounterComponent } from './counter/counter.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { PaginationService } from './services/pagination.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +38,14 @@ import { CallbackPipe } from './callback.pipe';
     RemoveComponent,
     AddComponent,
     StarComponent,
-    CallbackPipe
+    FilterDishesPipe,
+    HomeComponent,
+    NotfoundComponent,
+    MenuComponent,
+    DishdetailsComponent,
+    CounterComponent,
+    ReviewsComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +53,13 @@ import { CallbackPipe } from './callback.pipe';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    CartService,
+    CurrencyService,
+    DishService,
+    CounterService,
+    PaginationService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

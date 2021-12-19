@@ -1,20 +1,19 @@
 <main class="filter">
-    <h6>Filtrowanie</h6>
+    <h6>Filtruj dania</h6>
+    <button type="button" (click)="resetFilter()">All</button>
     <select [ngModel]="selectedFilter" (ngModelChange)="selectFilter($event)">
-        <option *ngFor="let filter of filters" [ngValue]>{{ filter }}</option>
+        <option *ngFor="let filter of filters">{{ filter }}</option>
     </select>
-    <select *ngIf="selectedFilter == 'typ kuchni' ">
-        <option *ngFor="let cuisine of cuisines" [ngValue]>{{ cuisine }}</option>
+    <select *ngIf="selectedFilter == 'typ kuchni'" [ngModel]="selectedCuisine" (ngModelChange)="onCuisineChange($event)">
+        <option *ngFor="let cuisine of cuisines" [ngValue]="cuisine">{{ cuisine }}</option>
     </select>
-    <select *ngIf="selectedFilter == 'typ dania' ">
-        <option *ngFor="let type of types" [ngValue]>{{ type }}</option>
+    <select *ngIf="selectedFilter == 'typ dania'" [ngModel]="selectedType" (ngModelChange)="onTypeChange($event)">
+        <option *ngFor="let type of types" [ngValue]="type">{{ type }}</option>
     </select>
-    <select *ngIf="selectedFilter == 'kategoria dania' ">
-        <option *ngFor="let time of times" [ngValue]>{{ time }}</option>
+    <select *ngIf="selectedFilter == 'kategoria dania'" [ngModel]="selectedTime" (ngModelChange)="onTimeChange($event)">
+        <option *ngFor="let time of times" [ngValue]="time">{{ time }}</option>
     </select>
-    <select *ngIf="selectedFilter == 'ocena' ">
-        <option *ngFor="let rate of [0,1,2,3,4,5]" [ngValue]>{{ rate }}</option>
+    <select *ngIf="selectedFilter == 'ocena'" [ngModel]="selectedRating" (ngModelChange)="onRatingChange($event)">
+        <option *ngFor="let rate of [1,2,3,4,5]" [ngValue]="rate">{{ rate }}</option>
     </select>
-    <br>
-    <button type="submit" (click)="onSubmit()" *ngIf="selectedFilter">Filter</button>
 </main>

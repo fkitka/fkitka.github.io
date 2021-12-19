@@ -1,0 +1,54 @@
+<main class="form-container">
+    <h4>Dodaj recenzję</h4>
+    <form [formGroup]="addReviewForm" (ngSubmit)="onSubmit()" id="reviewform">
+        <div class="form-group">
+            <input type="text" class="form-control" formControlName="name" placeholder="Nick">
+            <div *ngIf="addReviewForm.controls['name'].hasError('required')" class="alert alert-danger">
+                Wprowadź swój nick
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" formControlName="title" placeholder="Tytuł">
+            <div *ngIf="addReviewForm.controls['title'].hasError('required')" class="alert alert-danger">
+                Wprowadź tytuł
+            </div>
+        </div>
+        <div class="form-group">
+            <textarea form="reviewform" class="form-control" formControlName="content" placeholder="Treść"></textarea>
+            <div *ngIf="addReviewForm.controls['content'].hasError('required')" class="alert alert-danger">
+                Wprowadź treść
+            </div>
+            <div *ngIf="addReviewForm.controls['content'].hasError('minlength')" class="alert alert-danger">
+                Treść powinna zawierać co najmniej 50 znaków
+            </div>
+            <div *ngIf="addReviewForm.controls['content'].hasError('maxlength')" class="alert alert-danger">
+                Treść nie może przekraczać 500 znaków
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="">
+                Data zakupu
+                <input type="date" class="form-control" formControlName="date" placeholder="Data zakupu">
+            </label>
+            <div *ngIf="addReviewForm.controls['date'].hasError('required')" class="alert alert-danger">
+                Wprowadź datę zakupu
+            </div>
+        </div>
+        <button type="submit" [disabled]="!addReviewForm.valid" class="add">Dodaj</button>
+    </form>
+</main>
+<main class="reviews-container">
+    <h4>Recenzje</h4>
+    <div class="reviews">
+        <ul class="reviews list">
+            <li class="reviews list-item" *ngFor="let review of reviews">
+                <header class="reviewhead">
+                    <span class="name">{{review.name | titlecase }}</span>
+                    <span class="date">{{review.date}}</span>
+                </header>
+                <h6 class="title">{{review.title}}</h6>
+                <section class="content">{{review.content}}</section>
+            </li>
+        </ul>
+    </div>
+</main>

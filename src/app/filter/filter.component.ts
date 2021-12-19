@@ -1,7 +1,7 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-
-
-import { Dish } from '../dishes/dish';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { cuisines } from '../cuisines';
+import { times } from '../times';
+import { types } from '../types';
 
 @Component({
   selector: 'app-filter',
@@ -9,20 +9,25 @@ import { Dish } from '../dishes/dish';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-  @Input() dishes!: Dish[];
-  @Output() dishesChange = new EventEmitter<Dish[]>();
-  @Input() cuisines!: String[];
-  @Input() types!: String[];
-  @Input() times!: String[];
-  @Output() selectedValueToFilter = new EventEmitter();
-  @Output() selectedCategoryToFilter = new EventEmitter();
-  @Output() filter = new EventEmitter();
+  cuisines = cuisines;
   selectedCuisine = "";
+  @Output() cuisineChange = new EventEmitter<string>();
+  
   selectedType = "";
+  types = types;
+  @Output() typeChange = new EventEmitter<string>();
+  
   selectedTime = "";
-  selectedFilter = "";
+  times = times;
+  @Output() timeChange = new EventEmitter<string>();
+  
   selectedRating = 0;
+  rating = [0,1,2,3,4,5];
+  @Output() ratingChange = new EventEmitter<number>();
+
   filters = ["typ kuchni", "typ dania", "kategoria dania", "ocena"];
+  selectedFilter = "";
+  @Output() filterReset = new EventEmitter<null>();
   constructor() { 
   }
 
@@ -31,27 +36,19 @@ export class FilterComponent implements OnInit {
   selectFilter(filter: string){
     this.selectedFilter = filter;
   }
-  selectCuisine(cuisine: string){
-    this.selectedCuisine = cuisine;
-    this.selectedValueToFilter.emit(this.selectedCuisine);
-    this.selectedCategoryToFilter.emit("cuisine");
+  onCuisineChange(cuisine: string){
+    this.cuisineChange.emit(cuisine);
   }
-  selectType(type: string){
-    this.selectedType = type;
-    this.selectedValueToFilter.emit(this.selectedType);
-    this.selectedCategoryToFilter.emit("type");
+  onTypeChange(type: string){
+    this.typeChange.emit(type)
   }
-  selectTime(time: string){
-    this.selectedType = time;
-    this.selectedValueToFilter.emit(this.selectedTime);
-    this.selectedCategoryToFilter.emit("time");
+  onTimeChange(time: string){
+    this.timeChange.emit(time);
   }
-  selectRating(rate: number){
-    this.selectedRating = rate;
-    this.selectedValueToFilter.emit(this.selectedRating);
-    this.selectedCategoryToFilter.emit("rating");
+  onRatingChange(rate: number){
+    this.ratingChange.emit(rate);
   }
-  onSubmit(){
-    this.filter.emit();
+  resetFilter(){
+    this.filterReset.emit();
   }
 }

@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DISHES } from './dishes-list';
 import { Dish } from './dish';
 import { Currency } from '../currency/currency';
+import { CurrencyService } from '../services/currency.service';
+import { CartService } from '../services/cart.service';
+import { DishService } from '../services/dish.service';
+import { CounterService } from '../services/counter.service';
+import { PaginationService } from '../services/pagination.service';
 
 @Component({
   selector: 'app-dishes',
@@ -9,62 +14,38 @@ import { Currency } from '../currency/currency';
   styleUrls: ['./dishes.component.css']
 })
 export class DishesComponent implements OnInit {
-  onOrder: number;
-  menuItems: Dish[];
+  counter!: number;
+  menuItems: Dish[] = [];
   dishes = DISHES;
-  currentCurrency: any;
+  currentCurrency!: Currency;
   maxPriceDish: Dish;
   minPriceDish: Dish;
-  // cuisines: String[];
-  // types: String[];
-  // times: String[];
-  // filterCategory: string;
-  // filterValue: any;
-  constructor() { 
-    this.currentCurrency = {"symbol": "$", "converter": 1};
-    this.onOrder = 0;
-    this.menuItems = [];
+  currency!: Currency
+  elementsOnPage = 6;
+  pageNum = 2;
+
+  selectedCuisine: string = "";
+  selectedType: string = "";
+  selectedTime: string = "";
+  selectedRating: number = 0;
+
+  constructor(private currencyService: CurrencyService, 
+    private cartService: CartService,
+     private dishService: DishService,
+     private counterService: CounterService,
+     private paginationService: PaginationService) { 
     this.minPriceDish = this.getMinPriceDish();
     this.maxPriceDish = this.getMaxPriceDish();
-    // this.cuisines = [];
-    // this.types = [];
-    // this.times = [];
-    // this.filterCategory = "";
-    // this.filterValue = "";
   }
 
   ngOnInit(): void {
-    // this.setCuisines();
-    // this.setTypes();
-    // this.setTimes();
+    this.currencyService.currentCurrency.subscribe(currency => this.currency = currency)
+    this.cartService.currentItems.subscribe(items => this.menuItems = items);
+    this.counterService.currentCounter.subscribe(counter => this.counter = counter);
+    this.paginationService.currentPage.subscribe(page => this.pageNum = page)
+    this.paginationService.elementsCount.subscribe(count => this.elementsOnPage = count)
   }
-  // getDishes(){
-  //   return this.dishes;
-  // }
-  // setCuisines(){
-  //   this.dishes.forEach(dish => {
-  //     if (this.cuisines.indexOf(dish.cuisine) == -1){
-  //       this.cuisines.push(dish.cuisine)
-  //     }
-  //   });
-  // }
-  // setTypes(){
-  //   this.dishes.forEach(dish => {
-  //     if (this.types.indexOf(dish.type) == -1){
-  //       this.types.push(dish.type)
-  //     }
-  //   });
-  // }
-  // setTimes(){
-  //   this.dishes.forEach(dish => {
-  //     if (this.times.indexOf(dish.time) == -1){
-  //       this.times.push(dish.time)
-  //     }
-  //   });
-  // }
-  setCurrency(currency: Currency){
-    this.currentCurrency = currency;
-  }
+
 
   getMinPriceDish(): Dish{
     return this.dishes.slice(0).sort((a, b)=> (a.price-b.price))[0];
@@ -76,29 +57,43 @@ export class DishesComponent implements OnInit {
   onItemRemoved(dish: Dish){
     let i = this.menuItems.indexOf(dish);
     this.menuItems.splice(i, 1);
-    console.log(this.menuItems);
     this.minPriceDish = this.getMinPriceDish();
     this.maxPriceDish = this.getMaxPriceDish();
+    this.cartService.changeItems(this.menuItems);
+    this.counterService.changeCounter(this.counter - dish.ordered);
   }
-  onOrderChange(value: number) {
-    this.onOrder -= value;
+
+  setCurrentDish(dish: Dish){
+    this.dishService.setCurrentDish(dish);
   }
-  // setFilterCategory(category: string){
-  //   this.filterCategory = category;
-  //   console.log(this.filterCategory);
-  // }
-  // setFilterValue(value: any){
-  //   this.filterValue = value;
-  // } 
-  // reloadDishes(){
-  // }
-  // filterProducts = (dish: Dish) => {
-  //   switch(this.filterCategory){
-  //     case "cuisine": return dish.cuisine == this.filterValue;
-  //     case "type": return dish.type == this.filterValue;
-  //     case "time": return dish.time == this.filterValue;
-  //     case "rating": return dish.rating == this.filterValue;
-  //   }
-  //   return true;
-  // }
+  changeType(type: any) {
+    this.selectedType = type;
+    this.selectedCuisine = "";
+    this.selectedTime = "";
+    this.selectedRating = 0;
+  }
+  changeCuisine(cuisine: any) {
+    this.selectedCuisine = cuisine;
+    this.selectedType = "";
+    this.selectedTime = "";
+    this.selectedRating = 0;
+  }
+  changeTime(time: any){
+    this.selectedTime = time;
+    this.selectedType = "";
+    this.selectedCuisine = "";
+    this.selectedRating = 0;
+  }
+  changeRating(rate: any){
+    this.selectedRating = rate;
+    this.selectedType = "";
+    this.selectedCuisine = "";
+    this.selectedTime = "";
+  }
+  changeFiltering(){
+    this.selectedType = "";
+    this.selectedCuisine = "";
+    this.selectedTime = "";
+    this.selectedRating = 0;
+  }
 }

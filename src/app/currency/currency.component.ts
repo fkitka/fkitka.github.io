@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-
-import { Currency } from './currency'
+import { Component, OnInit } from '@angular/core';
 import { CURRENCIES } from './currencies-list';
+import { CurrencyService } from '../services/currency.service';
+import { Currency } from './currency';
 
 @Component({
   selector: 'app-currency',
@@ -10,16 +10,13 @@ import { CURRENCIES } from './currencies-list';
 })
 export class CurrencyComponent implements OnInit {
   currencies = CURRENCIES;
-  currentCurrency: Currency;
-  @Output() currentCurrencyChange = new EventEmitter<Currency>();
-  constructor() {
-     this.currentCurrency = this.currencies[0];
+  currency!: Currency;
+  constructor(private currencyService:  CurrencyService) {
   }
-
   ngOnInit(): void {
+    this.currencyService.currentCurrency.subscribe(currency => this.currency = currency);
   }
   changeCurrency(){
-   this.currentCurrency=this.currencies[this.currentCurrency.id%2];
-   this.currentCurrencyChange.emit(this.currentCurrency);
+    this.currencyService.setCurrency(this.currencies[this.currency.id%2]);
   }
 }

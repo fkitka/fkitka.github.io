@@ -1,8 +1,13 @@
 .container {
     display: grid;
     grid-template-columns:1fr 1fr 1fr;
-    place-items: center;
+    justify-items: center;
     grid-gap: 1rem;
+}
+.pagination{
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .card {
@@ -11,7 +16,7 @@
     flex-flow: column nowrap;
     max-width: 400px;
     min-width: 300px;
-    min-height: 500px;
+    min-height: 350px;
     box-shadow: 0 2px 10px rgb(111, 111, 111);
     border-radius: 5px;
     margin-bottom: 50px;
@@ -30,6 +35,14 @@
 }
 .content {
     padding: 20px;
+}
+.header {
+    position: relative;
+}
+.toCartItems{
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 .dishImage{
     width: 100%;
@@ -72,7 +85,7 @@ img{
     justify-self: center;
     margin: auto;
 }
-header{
+.dishHeader{
     position: relative;
 }
 
