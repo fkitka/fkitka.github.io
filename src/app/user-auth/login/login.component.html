@@ -1,0 +1,22 @@
+<main class="form-container">
+    <h4>Zaloguj się</h4>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" id="loginform">
+        <div class="form-group">
+            <input type="email" class="form-control" formControlName="email" placeholder="Email">
+            <div *ngIf="form.controls['email'].hasError('required')" class="alert alert-danger">
+                Należy wprowadzić email
+            </div>
+            <div *ngIf="form.controls['email'].hasError('email')" class="alert alert-danger">
+                Email nie jest poprawnego formatu
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" formControlName="password" placeholder="Hasło">
+            <div *ngIf="form.controls['password'].hasError('required')" class="alert alert-danger">
+                Należy wprowadzić hasło
+            </div>
+        </div>
+        <button type="submit" [disabled]="!form.valid" class="login">Zaloguj się</button>
+    </form>
+</main>
+<app-persistence></app-persistence>

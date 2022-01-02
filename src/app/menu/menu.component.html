@@ -8,33 +8,74 @@
                 <span></span>
             </label>
             <section class="hamburgerlist">
+                <a class="hamburgeritem" routerLink="login" *ngIf="!authService.isLoggedIn">
+                    <div class="auth">Login</div>
+                </a>
+                <a class="hamburgeritem" routerLink="register" *ngIf="!authService.isLoggedIn">
+                    <div class="auth">Register</div>
+                </a>
+                <a class="hamburgeritem" (click)="logout()" *ngIf="authService.isLoggedIn">
+                    <div class="auth">
+                        Logout
+                        <br>
+                    </div>
+                </a>
                 <a class="hamburgeritem" routerLink="">
                     <div>Home</div>
                 </a>
-                <a class="hamburgeritem" [routerLink]="['/dishes', 1]">
+                <a class="hamburgeritem" [routerLink]="['/dishes', 1]" *ngIf="authService.isLoggedIn">
                     <div>Dishes</div>
                 </a>
-                <a class="hamburgeritem" routerLink="add">
-                    <div >Add</div>
+                <a class="hamburgeritem" routerLink="add" *ngIf="authService.isLoggedIn">
+                    <div>Add</div>
                 </a>
-                <a class="hamburgeritem" routerLink="cart">
-                    <div >Cart</div>
+                <a class="hamburgeritem" routerLink="cart" *ngIf="authService.isLoggedIn">
+                    <div>Cart</div>
                 </a>
             </section>
         </div>
-        <div class="header"><h4>Restaurant</h4></div>
-        <a class="item" routerLink="" >
+        <div class="header">
+            <h4> Restaurant </h4>
+        </div>
+        <a class="item" routerLink="">
             <li routerLinkActive="active" class="home">Home</li>
         </a>
         <a class="item" [routerLink]="['/dishes', 1]">
             <li routerLinkActive="active">Dishes</li>
         </a>
-        <a class="item" routerLink="add">
-            <li routerLinkActive="active">Add</li>
-        </a>
-        <a class="item" routerLink="cart">
-            <li routerLinkActive="active">Cart</li>
-        </a>
+        <ng-container *ngIf="authService.isLoggedIn">
+            <a class="item" routerLink="cart">
+                <li routerLinkActive="active">Cart</li>
+            </a>
+            <a class="item" routerLink="add" *ngIf="authService.isManager && !authService.isAdmin">
+                <li routerLinkActive="active">Dishes manager</li>
+            </a>
+            <ng-container *ngIf="authService.isAdmin">
+                <a class="item" routerLink="adminview">
+                    <li routerLinkActive="active">Admin view</li>
+                </a>
+                <a class="item" routerLink="add">
+                    <li routerLinkActive="active">Dishes manager</li>
+                </a>
+                <span class="logged-as">
+                    ADMIN
+                </span>
+            </ng-container>
+            <button class="item logout" (click)="logout()">
+                Logout<br>
+            </button>
+            <span class="logged-as" *ngIf="!authService.isAdmin">
+                Signed in as {{ authService.currentUser.email }}
+            </span>
+        </ng-container>
+        <ng-container *ngIf="!authService.isLoggedIn">
+            <a class="item login" routerLink="login">
+                <li routerLinkActive="active">Login</li>
+            </a>
+            <a class="item register" routerLink="register">
+                <li routerLinkActive="active">Register</li>
+            </a>
+        </ng-container>
         <li class="item currency">
             <app-currency></app-currency>
         </li>

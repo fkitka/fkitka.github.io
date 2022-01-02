@@ -6,18 +6,33 @@ import { DishdetailsComponent } from './dishdetails/dishdetails.component';
 import { DishesComponent } from './dishes/dishes.component';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { LoginComponent } from './user-auth/login/login.component';
+import { RegisterComponent } from './user-auth/register/register.component';
+import { AuthGuard } from './user-auth/guard/auth.guard';
+import { AdminAuthGuard } from './user-auth/guard/admin-auth.guard';
+import { ManagerAuthGuard } from './user-auth/guard/manager-auth.guard';
 
 const routes: Routes = [
-  {path: "dishes/:page", component: DishesComponent},
-  {path: "add", component: AddComponent},
-  {path: "cart", component: CartComponent},
-  {path: "", component: HomeComponent},
-  {path: "dish/:dish.id", component: DishdetailsComponent},
-  {path: "**", component: NotfoundComponent},
+  { path: "", component: HomeComponent },
+  { path: "login", component: LoginComponent },
+  { path: "register", component: RegisterComponent },
+  { path: "dishes/:page", component: DishesComponent },
+  
+  { path: "dish/:dish.id", component: DishdetailsComponent,
+  canActivate: [AuthGuard]},
+  { path: "cart", component: CartComponent,
+    canActivate: [AuthGuard] },
+
+  { path: "add", component: AddComponent,
+    canActivate: [AuthGuard, ManagerAuthGuard]},
+  { path: "adminview", component: NotfoundComponent,
+    canActivate: [AuthGuard, AdminAuthGuard]},
+
+  { path: "**", component: NotfoundComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

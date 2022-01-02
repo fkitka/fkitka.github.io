@@ -26,6 +26,16 @@ import { CounterComponent } from './counter/counter.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PaginationService } from './services/pagination.service';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { environment } from '../environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { LoginComponent } from './user-auth/login/login.component';
+import { AuthenticationService } from './user-auth/authentication.service';
+import { RegisterComponent } from './user-auth/register/register.component';
+import { PersistenceComponent } from './user-auth/persistence/persistence.component';
+import { UserService } from './user-auth/user.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,13 +55,19 @@ import { PaginationService } from './services/pagination.service';
     DishdetailsComponent,
     CounterComponent,
     ReviewsComponent,
-    PaginationComponent
+    PaginationComponent,
+    LoginComponent,
+    RegisterComponent,
+    PersistenceComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
+    AngularFireAuthModule,
   ],
   providers: [
     CartService,
@@ -59,6 +75,8 @@ import { PaginationService } from './services/pagination.service';
     DishService,
     CounterService,
     PaginationService,
+    AuthenticationService,
+    UserService,
   ],
   bootstrap: [AppComponent]
 })

@@ -39,14 +39,36 @@ a{
 .active:hover{
         background-color: #df9258;
 }
-.currency{
-    margin-left: auto;
-}
 .home:hover{
     background-color: #df9258;
 }
 .home:active{
     background-color: #f39853;
+}
+.login {
+    margin-left: auto;
+}
+.logout{
+        display: inline-block;
+        text-decoration: none;
+        color: white;
+        border: none;
+        padding: 20px;
+        background-color: rgb(133, 133, 133);
+        margin-left: auto;
+}
+.logout:hover{
+    background-color: rgb(145, 145, 145);
+}
+.logout:active{
+    background-color: rgb(150, 150, 150);
+}
+.logged-as{
+    position: absolute;
+    right: 10px;
+    top: 4rem;
+    color: rgb(175, 174, 174);
+    font-size: 1rem;
 }
 .header{
     position: absolute;
@@ -66,6 +88,10 @@ a{
     }
     .currency{
         display: block;
+        margin-left: auto;
+    }
+    .auth{
+        color:rgb(54, 54, 54);
     }
     .hamburger{
         position: absolute;
@@ -136,5 +162,4 @@ a{
     .hamburgerlist div:active{
         background-color: #d6d4d4;
     }
-
 }

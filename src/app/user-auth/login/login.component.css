@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+.form-group{
+    display: block;
+    margin: 1rem 0 1rem 0;
+}
+
+.form-container{
+    margin-top: 5rem;
+    width: 50%;
+    padding: 2rem;
+    background-color: white;
+    overflow: auto;
+}
+form {
+    position: relative;   
+}
+
+input.ng-invalid {
+    border-left: solid red 5px
+}
+
+input.ng-valid{
+    border-left: solid green 5px;
+}
+.alert-danger{
+    padding: 5px;
+}
+.add{
+    position: absolute;
+    bottom: -2rem;
+    right: 1rem;
+}
+@media (max-width: 760px) {
+    .form-container{
+        width: 80%
+    }
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DISHES } from '../dishes/dishes-list';
+import { DishService } from '../services/dish.service';
 
 @Component({
   selector: 'app-add',
@@ -24,7 +25,7 @@ export class AddComponent implements OnInit {
     pictures: new FormControl("", [Validators.required, Validators.pattern(this.noWhitespaceRegex), Validators.pattern(this.imageRegex)]),
     link: new FormControl(),
   });
-  constructor() { }
+  constructor(private dishService: DishService) { }
 
   
   ngOnInit(): void {
@@ -35,8 +36,8 @@ export class AddComponent implements OnInit {
     return isValid ? null : { 'whitespace': true };
   }
   onSubmit(){
-    console.log(DISHES)
-    DISHES.push(this.addDishForm.value);
+    console.log(this.addDishForm.value)
+    this.dishService.createDish(this.addDishForm.value);
     this.addDishForm.reset();
   }
 }

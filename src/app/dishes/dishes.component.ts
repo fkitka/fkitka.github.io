@@ -7,6 +7,7 @@ import { CartService } from '../services/cart.service';
 import { DishService } from '../services/dish.service';
 import { CounterService } from '../services/counter.service';
 import { PaginationService } from '../services/pagination.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-dishes',
@@ -16,10 +17,10 @@ import { PaginationService } from '../services/pagination.service';
 export class DishesComponent implements OnInit {
   counter!: number;
   menuItems: Dish[] = [];
-  dishes = DISHES;
+  dishes: Dish[] = [];
   currentCurrency!: Currency;
-  maxPriceDish: Dish;
-  minPriceDish: Dish;
+  minPriceDish!: Dish;
+  maxPriceDish!: Dish;
   currency!: Currency
   elementsOnPage = 6;
   pageNum = 2;
@@ -31,11 +32,10 @@ export class DishesComponent implements OnInit {
 
   constructor(private currencyService: CurrencyService, 
     private cartService: CartService,
-     private dishService: DishService,
-     private counterService: CounterService,
-     private paginationService: PaginationService) { 
-    this.minPriceDish = this.getMinPriceDish();
-    this.maxPriceDish = this.getMaxPriceDish();
+    private dishService: DishService,
+    private counterService: CounterService,
+    private paginationService: PaginationService) { 
+      this.getDishesList();
   }
 
   ngOnInit(): void {
@@ -46,20 +46,31 @@ export class DishesComponent implements OnInit {
     this.paginationService.elementsCount.subscribe(count => this.elementsOnPage = count)
   }
 
-
-  getMinPriceDish(): Dish{
-    return this.dishes.slice(0).sort((a, b)=> (a.price-b.price))[0];
+  getDishesList(){
+    this.dishService.getDishesList().snapshotChanges().pipe(
+      map(changes => 
+        changes.map(c => ({ key: c.payload.doc.id, ...c.payload.doc.data() }))
+      )
+    ).subscribe(dishes =>{
+      this.dishes = (<Dish[]>dishes);
+      this.minPriceDish = this.getMinPriceDish(this.dishes);
+      this.maxPriceDish = this.getMaxPriceDish(this.dishes);
+    });
   }
-  getMaxPriceDish(): Dish{
-    return this.dishes.slice(0).sort((a, b)=>(a.price-b.price))[this.dishes.length-1];
+  getMinPriceDish(dishes: Dish[]): Dish{
+    return dishes.sort((a, b)=> (a.price-b.price))[0];
+    // return DISHES[0]
+  }
+  getMaxPriceDish(dishes: Dish[]): Dish{
+    return dishes.sort((a, b)=>(a.price-b.price))[this.dishes.length-1];
+    // return DISHES[1];
   }
 
   onItemRemoved(dish: Dish){
     let i = this.menuItems.indexOf(dish);
     this.menuItems.splice(i, 1);
-    this.minPriceDish = this.getMinPriceDish();
-    this.maxPriceDish = this.getMaxPriceDish();
-    this.cartService.changeItems(this.menuItems);
+    this.minPriceDish = this.getMinPriceDish(this.dishes);
+    this.maxPriceDish = this.getMaxPriceDish(this.dishes);
     this.counterService.changeCounter(this.counter - dish.ordered);
   }
 

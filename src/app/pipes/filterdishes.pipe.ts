@@ -7,7 +7,7 @@ import { Dish } from '../dishes/dish';
     pure: false,
 })
 export class FilterDishesPipe implements PipeTransform {
-    transform(items: Dish[], cuisine: string, type: string, time: string, rating: number): Dish[] {
+    transform(items: any[], cuisine: string, type: string, time: string, rating: number): Dish[] {
         return items.filter(item => {
             if (cuisine != item.cuisine && cuisine != ""){
                 return false;
