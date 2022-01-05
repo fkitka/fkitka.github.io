@@ -1,0 +1,90 @@
+<div class="addDish" (click)="addDishToggle()">Dodaj danie</div>
+<main class="container" [ngClass]="{'hidden': isHidden, 'show': !isHidden}">
+    <div class="form-container" >
+        <h5>Add</h5>
+        <form [formGroup]="addDishForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="name" placeholder="Nazwa pozycji">
+                <div *ngIf="addDishForm.controls['name'].hasError('required')" class="alert alert-danger">
+                    Wprowadź nazwę pozycji
+                </div>
+                <div *ngIf="addDishForm.controls['name'].hasError('minlength')" class="alert alert-danger">
+                    Nazwa powinna zawierać co najmniej 2 znaki
+                </div>
+                <div *ngIf="addDishForm.controls['name'].hasError('maxlength')" class="alert alert-danger">
+                    Nazwa nie może przekraczać 15 znaków
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="cuisine" placeholder="Typ kuchni">
+                <div *ngIf="addDishForm.controls['cuisine'].hasError('required')" class="alert alert-danger">
+                    Wprowadź typ kuchni
+                </div>
+                <div *ngIf="addDishForm.controls['cuisine'].hasError('minlength')" class="alert alert-danger">
+                    Typ kuchni powinien zawierać co najmniej 2 znaki
+                </div>
+                <div *ngIf="addDishForm.controls['cuisine'].hasError('maxlength')" class="alert alert-danger">
+                    Typ kuchni nie może przekraczać 20 znaków
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="type" placeholder="Typ dania">
+                <div *ngIf="addDishForm.controls['type'].hasError('required')" class="alert alert-danger">
+                    Wprowadź typ dania
+                </div>
+                <div *ngIf="addDishForm.controls['type'].hasError('minlength')" class="alert alert-danger">
+                    Typ dania powinien zawierać co najmniej 2 znaki
+                </div>
+                <div *ngIf="addDishForm.controls['type'].hasError('maxlength')" class="alert alert-danger">
+                    Typ dania nie może przekraczać 15 znaków
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="time" placeholder="Kategoria">
+                <div *ngIf="addDishForm.controls['time'].hasError('required')" class="alert alert-danger">
+                    Wprowadź kategorię
+                </div>
+                <div *ngIf="addDishForm.controls['time'].hasError('minlength')" class="alert alert-danger">
+                    Kategoria powinien zawierać co najmniej 2 znaki
+                </div>
+                <div *ngIf="addDishForm.controls['time'].hasError('maxlength')" class="alert alert-danger">
+                    Kategoria nie może przekraczać 15 znaków
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="ingredients" placeholder="Składniki">
+                <div *ngIf="addDishForm.controls['ingredients'].hasError('required')" class="alert alert-danger">
+                    Wprowadź składniki
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" formControlName="amount" placeholder="Ilość w magazynie">
+                <div *ngIf="addDishForm.controls['amount'].hasError('required')" class="alert alert-danger">
+                    Wprowadź ilość
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" formControlName="price" placeholder="Cena">
+                <div *ngIf="addDishForm.controls['price'].hasError('required')" class="alert alert-danger">
+                    Wprowadź cenę
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="textarea" class="form-control" formControlName="description" placeholder="Opis">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="pictures" placeholder="Zdjęcia">
+                <div *ngIf="addDishForm.controls['pictures'].hasError('required')" class="alert alert-danger">
+                    Wprowadź nazwy zdjęć
+                </div>
+                <div *ngIf="addDishForm.controls['pictures'].hasError('pattern')" class="alert alert-danger">
+                    Wprowadź odpowiedni format pliku
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="link" placeholder="Linki do zdjęć">
+            </div>
+            <button type="submit" [disabled]="!addDishForm.valid" class="add">Dodaj</button>
+        </form>
+    </div>
+</main>

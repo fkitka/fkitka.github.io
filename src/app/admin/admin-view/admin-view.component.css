@@ -1,0 +1,19 @@
+.users{
+    margin: 1rem;
+}
+
+.user{
+    display:flex;
+    align-items: stretch;
+}
+
+.card{
+    align-self: stretch;
+    background-color: white;
+    box-shadow: 1px 1px 1px grey;
+    padding: 10px;
+    width: 18vw;
+}
+.card > span{
+    width: fit-content;
+}

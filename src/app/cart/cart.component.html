@@ -3,12 +3,12 @@
     <h2>Twój koszyk</h2>
     <section class="items">
         <div class="cart-item" *ngFor="let item of items">
-            <span>{{ item.ordered }} x {{ item.name }} </span>
-            <span>{{ item.price * currency.converter }} {{ currency.symbol }}</span>
+            <span>{{ item.quantity }} x {{ item.item.name }} </span>
+            <span>{{ item.item.price * currency.converter }} {{ currency.symbol }}</span>
         </div>  
     </section>
     <footer>
-        <div class="total">Total: {{ sum(items) }}{{currency.symbol}}</div>
+        <div class="total">Total: {{ totalPrice * currency.converter }}{{currency.symbol}}</div>
         <button class="purchase" type="submit">Purchase</button>
     </footer>
 </div>

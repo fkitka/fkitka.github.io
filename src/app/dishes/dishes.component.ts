@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { DISHES } from './dishes-list';
 import { Dish } from './dish';
 import { Currency } from '../currency/currency';
-import { CurrencyService } from '../services/currency.service';
-import { CartService } from '../services/cart.service';
-import { DishService } from '../services/dish.service';
-import { CounterService } from '../services/counter.service';
-import { PaginationService } from '../services/pagination.service';
+import { CurrencyService } from '../currency/currency.service';
+import { CartService } from '../cart/cart.service';
+import { DishService } from './dish.service';
+import { PaginationService } from '../pagination/pagination.service';
 import { map } from 'rxjs';
 
 @Component({
@@ -15,8 +13,7 @@ import { map } from 'rxjs';
   styleUrls: ['./dishes.component.css']
 })
 export class DishesComponent implements OnInit {
-  counter!: number;
-  menuItems: Dish[] = [];
+  // menuItems: Dish[] = [];
   dishes: Dish[] = [];
   currentCurrency!: Currency;
   minPriceDish!: Dish;
@@ -33,15 +30,13 @@ export class DishesComponent implements OnInit {
   constructor(private currencyService: CurrencyService, 
     private cartService: CartService,
     private dishService: DishService,
-    private counterService: CounterService,
     private paginationService: PaginationService) { 
       this.getDishesList();
   }
 
   ngOnInit(): void {
     this.currencyService.currentCurrency.subscribe(currency => this.currency = currency)
-    this.cartService.currentItems.subscribe(items => this.menuItems = items);
-    this.counterService.currentCounter.subscribe(counter => this.counter = counter);
+    // this.cartService.currentItems.subscribe(items => this.menuItems = items);
     this.paginationService.currentPage.subscribe(page => this.pageNum = page)
     this.paginationService.elementsCount.subscribe(count => this.elementsOnPage = count)
   }
@@ -65,15 +60,6 @@ export class DishesComponent implements OnInit {
     return dishes.sort((a, b)=>(a.price-b.price))[this.dishes.length-1];
     // return DISHES[1];
   }
-
-  onItemRemoved(dish: Dish){
-    let i = this.menuItems.indexOf(dish);
-    this.menuItems.splice(i, 1);
-    this.minPriceDish = this.getMinPriceDish(this.dishes);
-    this.maxPriceDish = this.getMaxPriceDish(this.dishes);
-    this.counterService.changeCounter(this.counter - dish.ordered);
-  }
-
   setCurrentDish(dish: Dish){
     this.dishService.setCurrentDish(dish);
   }

@@ -22,7 +22,8 @@
         <header>
              <h3>{{dish.name | uppercase}} </h3>
              <h4>KUCHNIA {{dish.cuisine | uppercase}}</h4>
-             <div class="items"><app-items [currentDish]="dish" [(menuItems)]="menuItems"></app-items></div>
+             <div class="items"><app-items [currentDish]="dish" ></app-items></div>
+                <!-- [(menuItems)]="menuItems" -->
              
             </header>
         <h5>{{dish.type}} | {{dish.time}}</h5>

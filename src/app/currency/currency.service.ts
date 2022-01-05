@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Currency } from "../currency/currency";
-import { CURRENCIES } from "../currency/currencies-list";
+import { Currency } from "./currency";
+import { CURRENCIES } from "./currencies-list";
 import { BehaviorSubject } from "rxjs";
 
 @Injectable()

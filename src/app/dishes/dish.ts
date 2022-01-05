@@ -1,5 +1,5 @@
 export interface Dish {
-    id: number;
+    key: string;
     name: string;
     cuisine: string;
     type: string;

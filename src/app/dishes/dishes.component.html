@@ -13,20 +13,19 @@
     [ngClass]="{
         'shortage': (dish.amount - dish.ordered) <= 3, 
         'nomore': (dish.amount - dish.ordered) == 0,
-        'max': dish.id == maxPriceDish.id, 'min': dish.id == minPriceDish.id }">
-        <app-remove [currentDish]="dish"
-        (itemRemoved)=(onItemRemoved($event)) >
-    </app-remove>
+        'max': dish.key == maxPriceDish.key, 'min': dish.key == minPriceDish.key }">
+        
         <div class="dishImage">
-            <a [routerLink]="['/dish', dish.id]" (click)="setCurrentDish(dish)"><img src="assets/img/{{dish.pictures.split(',')[0]}}" alt="Image" [ngClass]="{'stock-out': (dish.amount - dish.ordered) == 0}"></a>
+            <a [routerLink]="['/dish', dish.name]" (click)="setCurrentDish(dish)"><img src="assets/img/{{dish.pictures.split(',')[0]}}" alt="Image" [ngClass]="{'stock-out': (dish.amount - dish.ordered) == 0}"></a>
         </div>
         <div class="content">
             <header class="dishHeader">
             <h3>{{dish.name | uppercase}}</h3>
             <div class="price">{{dish.price * currency.converter}}{{currency.symbol}}</div>
             <div class="left">Pozostało: {{dish.amount-dish.ordered}}</div>
-            <app-items [currentDish]="dish" [(menuItems)]="menuItems" class="toCartItems"></app-items>
-            </header>
+            <app-items [currentDish]="dish" class="toCartItems"></app-items>
+            <!-- [(menuItems)]="menuItems" -->
+        </header>
         </div>
     </div>
 </div>

@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+}
+.addDish {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 5rem;
+    height: fit-content;
+    background-color: rgb(238, 144, 144);
+}
+.container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+.form-container{
+    margin-top: 5rem;
+    width: 50%;
+    height: 600px;
+    padding: 2rem;
+    background-color: white;
+    overflow: auto;
+    box-shadow: 1px 0 10px lightgrey;
+    z-index: 10;
+}
+.form-group{
+    display: block;
+    margin: 1rem 0 1rem 0;
+}
+
+form {
+    position: relative;   
+}
+
+input.ng-invalid {
+    border-left: solid red 5px
+}
+
+input.ng-valid{
+    border-left: solid green 5px;
+}
+.alert-danger{
+    padding: 5px;
+}
+.add{
+    position: absolute;
+    bottom: -2rem;
+    right: 1rem;
+}
+.hidden{
+    display: none;
+}
+.show{ 
+    display: flex;
+} 
+
+@media (max-width: 760px) {
+    .form-container{
+        width: 80%
+    }
+}

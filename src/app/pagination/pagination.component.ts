@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PaginationService } from '../services/pagination.service';
+import { PaginationService } from './pagination.service';
 
 @Component({
   selector: 'app-pagination',

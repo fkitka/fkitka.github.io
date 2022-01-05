@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DISHES } from '../dishes/dishes-list';
-import { DishService } from '../services/dish.service';
+import { Dish } from '../../dishes/dish';
+import { DishService } from '../../dishes/dish.service';
 
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.css']
 })
-export class AddComponent implements OnInit {
+export class AddComponent{
+  isHidden = true;
   noWhitespaceRegex = /^(\w+\S+)$/;
   imageRegex = /([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
   addDishForm = new FormGroup({
-    id: new FormControl(DISHES.length+1),
-    name: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(15), this.notOnlyWhitespaceValidator]),
+    name: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(20), this.notOnlyWhitespaceValidator]),
     cuisine: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(20), this.notOnlyWhitespaceValidator]),
     type: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(15), this.notOnlyWhitespaceValidator]),
     time: new FormControl("", [Validators.required,  Validators.minLength(2), Validators.maxLength(15), this.notOnlyWhitespaceValidator]),
@@ -25,11 +25,14 @@ export class AddComponent implements OnInit {
     pictures: new FormControl("", [Validators.required, Validators.pattern(this.noWhitespaceRegex), Validators.pattern(this.imageRegex)]),
     link: new FormControl(),
   });
+  dishes!: Dish[];
+  menuItems: Dish[] = [];
+  subscription: any;
+  counter = 0;
+
   constructor(private dishService: DishService) { }
 
   
-  ngOnInit(): void {
-  }
   notOnlyWhitespaceValidator(control: FormControl) {
     const isWhitespace = (control.value || "" ).trim().length === 0;
     const isValid = !isWhitespace;
@@ -37,7 +40,11 @@ export class AddComponent implements OnInit {
   }
   onSubmit(){
     console.log(this.addDishForm.value)
-    this.dishService.createDish(this.addDishForm.value);
+    this.dishService.createDish(this.addDishForm.value).then(() =>console.log("Dish successfully created"));
     this.addDishForm.reset();
   }
+  addDishToggle(){
+    this.isHidden = !this.isHidden;
+  }
+
 }

@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.authService
       .register(this.getEmail()?.value, this.getPassword()?.value)
-      .then(() => this.router.navigate(['/login']))
+      .then(() => this.router.navigate(['']))
       .catch((e) => console.log(e.message));
   }
 }

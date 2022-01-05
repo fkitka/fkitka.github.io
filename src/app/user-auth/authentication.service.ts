@@ -96,6 +96,7 @@ export class AuthenticationService implements OnInit{
     return this.fireAuth
       .signOut().then(res => {
         console.log('You logged out!');
+        localStorage.clear();
       })
       .catch(err => {
         console.log('Something went wrong: ', err.message);

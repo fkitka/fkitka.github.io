@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService
     .login(this.getEmail()?.value, this.getPassword()?.value)
-    .then(() => this.router.navigate(['/dishes/1']))
+    .then(() => this.router.navigate(['']))
     .catch((e) => console.log(e.message));
 
   }
