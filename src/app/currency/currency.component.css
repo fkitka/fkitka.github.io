@@ -51,12 +51,12 @@ label{
 }
 
 .onbtn{
-    bottom: 1px;
+    bottom: 0;
     left: 8px;
 
 }
 .offbtn{
-    bottom: 1px;
+    bottom: 0;
     right: 8px;
     color: rgb(163, 163, 163);
 }

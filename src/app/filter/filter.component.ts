@@ -49,6 +49,7 @@ export class FilterComponent implements OnInit {
     this.ratingChange.emit(rate);
   }
   resetFilter(){
+    this.selectedFilter = "";
     this.filterReset.emit();
   }
 }

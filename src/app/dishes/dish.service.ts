@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Dish } from "./dish";
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/compat/firestore'
+import { RatingService } from "../rating/rating.service";
 
 @Injectable()
 export class DishService {
@@ -11,6 +12,9 @@ export class DishService {
     }
     setCurrentDish(dish: Dish){
         this.dish = dish;
+    }
+    getCurrentDish(){
+        return this.dish;
     }
     createDish(dish: Dish){
         return this.dishRef.doc().set({...dish});
@@ -23,5 +27,8 @@ export class DishService {
     }
     deleteDish(key: string){
         return this.dishRef.doc(key).delete();
+    }
+    getDishDoc(key: string){
+        return this.dishRef.doc(key);
     }
 }

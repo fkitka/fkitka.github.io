@@ -23,25 +23,22 @@
                 <a class="hamburgeritem" routerLink="">
                     <div>Home</div>
                 </a>
-                <a class="hamburgeritem" [routerLink]="['/dishes', 1]" *ngIf="authService.isLoggedIn">
+                <a class="hamburgeritem" [routerLink]="['/dishes', 1]">
                     <div>Dishes</div>
                 </a>
                 <a class="hamburgeritem" routerLink="cart" *ngIf="authService.isLoggedIn">
                     <div>Cart</div>
                 </a>
-                <a class="hamburgeritem" routerLink="dishmanager" *ngIf="authService.isManager && !authService.isAdmin">
+                <a class="hamburgeritem" routerLink="dishmanager" *ngIf="authService.isManager && !authService.isAdmin && authService.isLoggedIn">
                     <div>Dish Manager</div>
                 </a>
-                <a class="hamburgeritem" routerLink="adminview" *ngIf="authService.isAdmin">
+                <a class="hamburgeritem" routerLink="adminview" *ngIf="authService.isAdmin  && authService.isLoggedIn">
                     <div>Admin view</div>
                 </a>
-                <a class="hamburgeritem" routerLink="dishmanager" *ngIf="authService.isAdmin">
+                <a class="hamburgeritem" routerLink="dishmanager" *ngIf="authService.isAdmin  && authService.isLoggedIn">
                     <div>Dish Manager</div>
                 </a>
             </section>
-        </div>
-        <div class="header">
-            <h4> Restaurant </h4>
         </div>
         <a class="item" routerLink="">
             <li routerLinkActive="active" class="home">Home</li>
@@ -71,7 +68,7 @@
                 Logout<br>
             </button>
             <span class="logged-as" *ngIf="!authService.isAdmin">
-                Signed in as {{ authService.currentUser.email }}
+                Logged as {{ authService.currentUser.email }}
             </span>
         </ng-container>
         <ng-container *ngIf="!authService.isLoggedIn">

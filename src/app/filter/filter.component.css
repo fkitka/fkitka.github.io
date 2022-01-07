@@ -3,3 +3,24 @@
     margin-left: 1rem;
     width: fit-content
 }
+.all {
+    border-style: none;
+    background-color: white;
+}
+.all:hover{
+    background-color: rgb(231, 231, 231);
+}
+.all:active{
+    background-color: rgb(219, 219, 219);
+}
+
+@media (max-width: 400px){
+    .filter-category{
+        width: 30vw;
+        font-size: 0.8rem;
+    }
+    .filter-type{
+        width: 35vw;
+        font-size: 0.8rem;
+    }
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Dish } from '../../dishes/dish';
 import { DishService } from '../../dishes/dish.service';
@@ -9,7 +9,7 @@ import { DishService } from '../../dishes/dish.service';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent{
-  isHidden = true;
+  @Input() isHidden = true;
   noWhitespaceRegex = /^(\w+\S+)$/;
   imageRegex = /([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
   addDishForm = new FormGroup({
@@ -43,8 +43,6 @@ export class AddComponent{
     this.dishService.createDish(this.addDishForm.value).then(() =>console.log("Dish successfully created"));
     this.addDishForm.reset();
   }
-  addDishToggle(){
-    this.isHidden = !this.isHidden;
-  }
+  
 
 }

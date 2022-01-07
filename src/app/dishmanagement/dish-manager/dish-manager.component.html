@@ -1,16 +1,19 @@
-<h3>Dania</h3>
-<main class="dishes">
-    <div class="dish" *ngFor="let dish of dishes">
-        <div class="card">
-            <span>{{ dish.name }}</span>
-            <button type="submit" class="edit" (click)="editDish(dish)">EDIT</button>
-            <app-remove [currentDish]="dish"
-                (itemRemoved)=(onItemRemoved($event)) >
-            </app-remove>
+<main>
+    <h3>Dania</h3>
+    <section class="dishes">
+        <div class="dish" *ngFor="let dish of dishes">
+            <div class="card">
+                <span>{{ dish.name }}</span>
+                <button type="submit" class="edit" (click)="editDish(dish)">EDIT</button>
+                <app-remove [currentDish]="dish"
+                    (itemRemoved)=(onItemRemoved($event)) >
+                </app-remove>
+            </div>
         </div>
-    </div>
+    </section>
 </main>
 <div class="add-dish">
-    <app-add></app-add>
+    <div class="addDishButton" (click)="addDishToggle()">Dodaj danie</div>
+    <app-add *ngIf="!isAddHidden" [isHidden]="isAddHidden"></app-add>
 </div>
-<app-edit-dish *ngIf="!isHidden" [currentDish]="currentDish"></app-edit-dish>
+<app-edit-dish *ngIf="!isEditHidden" [currentDish]="currentDish"></app-edit-dish>

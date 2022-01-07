@@ -1,36 +1,38 @@
 <main class="container">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <!-- TODO: DODAC KOLEJNE ZDJECIA POTRAW -->
-              <div class="carousel-item active">
-                  <img src="assets/img/{{dish.pictures.split(',')[0]}}" class="d-block w-100" alt="">
-              </div>
-              <div class="carousel-item" *ngFor="let picture of dish.pictures.split(',').slice(1)">
-                <img src="assets/img/{{picture}}" class="d-block w-100" alt="">
-              </div>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <!-- TODO: DODAC KOLEJNE ZDJECIA POTRAW -->
+            <div class="carousel-item active">
+                <img src="assets/img/{{dish.pictures.split(',')[0]}}" class="d-block w-100" alt="">
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+            <div class="carousel-item" *ngFor="let picture of dish.pictures.split(',').slice(1)">
+                <img src="assets/img/{{picture}}" class="d-block w-100" alt="">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
     <div class="content">
         <header>
-             <h3>{{dish.name | uppercase}} </h3>
-             <h4>KUCHNIA {{dish.cuisine | uppercase}}</h4>
-             <div class="items"><app-items [currentDish]="dish" ></app-items></div>
-                <!-- [(menuItems)]="menuItems" -->
-             
-            </header>
+            <h3>{{dish.name | uppercase}} </h3>
+            <h4>KUCHNIA {{dish.cuisine | uppercase}}</h4>
+            <div class="items">
+                <app-items [currentDish]="dish"></app-items>
+            </div>
+        </header>
         <h5>{{dish.type}} | {{dish.time}}</h5>
         <div class="price">Cena: {{dish.price * currency.converter}}{{currency.symbol}}</div>
         <div class="left">Pozostało: {{dish.amount-dish.ordered}}</div>
         <div class="rating">
-            <app-rate [(rating)]="dish.rating"></app-rate>
+            <app-show-rating [currentDish]="dish"></app-show-rating>
             <span class="ratingcount">{{counter}}</span>
         </div>
         <section class="details">
@@ -42,7 +44,7 @@
             </ul>
             <aside>
             </aside>
-            
+
         </section>
         <footer>
             <br>

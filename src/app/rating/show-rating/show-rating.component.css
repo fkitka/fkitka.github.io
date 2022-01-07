@@ -1,0 +1,11 @@
+.rate{
+    z-index: 2;
+    font-size: 2.5vw;
+}
+
+@media (max-width: 600px){
+    
+    .rate{
+        font-size: 4vw;
+    }
+}

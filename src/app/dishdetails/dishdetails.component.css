@@ -145,7 +145,7 @@ h5 {
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    border-top: lightgrey 1px solid;
+    /* border-top: lightgrey 1px solid; */
     padding-top: 6px;
 }
 @media (max-width: 1000px){
@@ -169,6 +169,10 @@ h5 {
 
 
 @media (max-width: 768px){
+    header{
+        flex-flow: column nowrap;
+        gap: 1vh;
+    }
     h3{font-size: 5vw;}
     h4{font-size: 4vw}
     h5{font-size: 3vw}
@@ -185,4 +189,24 @@ h5 {
         font-size: 2.5vw;
     }
  
+}
+@media (max-width: 600px){
+    h3{font-size: 7vw}
+    h4{font-size: 6vw}
+    h5{font-size: 5vw}
+    .description{
+        font-size: 4.5vw
+    }
+    .ingredients li{
+        font-size: 4vw
+    }
+    .price{
+        font-size: 4.5vw;
+    }
+    .left{ 
+        font-size: 4.5vw;
+    }
+    .ratingcount{
+        font-size: 5vw;
+    }
 }

@@ -24,10 +24,25 @@ input.ng-valid, textarea.ng-valid{
 .alert-danger{
     padding: 5px;
 }
+.list{
+    padding: 0;
+}
 .list-item{
     list-style-type: none;
-    margin: 1rem;
+    /* margin: 1rem; */
+    padding: 1rem;
+    border-bottom:rgb(196, 196, 196) solid 1px;
 }
+.add{
+    border-style: none;
+}
+.add:hover{
+    background-color: rgb(219, 219, 219);
+}
+.add:active{
+    background-color: rgb(196, 196, 196);
+}
+
 .reviewhead{
     display: flex;
     position: relative;
@@ -44,11 +59,48 @@ input.ng-valid, textarea.ng-valid{
     color: grey;
     font-size: 1rem;
 }
+.title{
+    font-size: 1rem;
+}
 
 .rating{
     width: 130px;
     height: 30px;
 }
 .content{
+    font-size: 0.8rem;
     word-wrap: break-word;
+}
+@media (max-width: 768px){
+   .name{
+       font-size: 4vw;
+   }
+   .title{
+       font-size: 3vw;
+   }
+   .date{
+       font-size: 2vw;
+   }
+   .content{
+       font-size: 2.5vw;
+   }
+}
+@media (max-width: 600px){
+    .name {
+        font-size: 5vw;
+    }
+    .title{
+        font-size: 4vw;
+    }
+    .date {
+        font-size: 3vw;
+    }
+    .content{
+        font-size: 3.5vw;
+    }
+}
+@media (max-width: 400px){
+    input[type="date"]{
+        width: 50vw;
+    }
 }

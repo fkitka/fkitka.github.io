@@ -1,12 +1,12 @@
-<header>
-    <app-filter (cuisineChange)="changeCuisine($event)" 
-                (typeChange)="changeType($event)"
-                (timeChange)="changeTime($event)"
-                (ratingChange)="changeRating($event)"
-                (filterReset)="changeFiltering()">
-    </app-filter>
+<header class="counter">
     <app-counter></app-counter>
 </header>
+<app-filter (cuisineChange)="changeCuisine($event)" 
+            (typeChange)="changeType($event)"
+            (timeChange)="changeTime($event)"
+            (ratingChange)="changeRating($event)"
+            (filterReset)="changeFiltering()">
+</app-filter>
 <div class="pagination"><app-pagination></app-pagination></div>
 <div class="container"> 
     <div class="card" *ngFor="let dish of (dishes | filterdishes:selectedCuisine:selectedType:selectedTime:selectedRating).slice(0 + (pageNum-1)*elementsOnPage,elementsOnPage + (pageNum-1)*elementsOnPage)"

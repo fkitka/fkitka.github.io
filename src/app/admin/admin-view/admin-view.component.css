@@ -1,10 +1,24 @@
+* {
+    font-family: "Roboto", sans-serif
+}
+
+.container{
+    background-color: white;
+    padding: 10px;
+    margin-left:10px;
+    width: 100%;
+ }
+
 .users{
-    margin: 1rem;
+    overflow: auto;
+    min-height: 50vh;
+    max-height: 65vh;
+    width: 100%;
 }
 
 .user{
-    display:flex;
-    align-items: stretch;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .card{
@@ -12,8 +26,28 @@
     background-color: white;
     box-shadow: 1px 1px 1px grey;
     padding: 10px;
-    width: 18vw;
+    width: 40vw;
 }
 .card > span{
     width: fit-content;
+}
+.ban, .manager, .admin{
+    border: 1px solid lightgrey;
+}
+.ban:hover, .manager:hover, .admin:hover{
+    background-color: rgb(235, 235, 235);
+}
+.ban:active, .manager:active, .admin:active{
+    background-color: rgb(214, 214, 214);
+}
+@media (max-width: 600px){
+    .email, .roles{
+        font-size: 3.8vw;
+    }
+    .ban, .admin, .manager{
+        font-size: 3vw;
+    }
+    .container{
+        margin-left: 0;
+    }
 }

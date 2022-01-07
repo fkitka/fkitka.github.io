@@ -1,18 +1,23 @@
 <app-persistence></app-persistence>
-<main class="users">
+<main class="container">
     <h3>USERS</h3>
-    <div class="user" *ngFor="let user of users">
-        <div class="card">
-            <span>{{ user.email }}</span>
-            <span *ngIf="user.manager">manager</span>
-            <span *ngIf="user.admin">admin</span>
-            <span *ngIf="!user.admin && !user.manager">client</span>
+    <section class="users">
+        <div class="user" *ngFor="let user of users">
+            <div class="card">
+                <span class="email">{{ user.email }}</span>
+                <div class="roles">
+                    <span *ngIf="user.manager">manager </span>
+                    <span *ngIf="user.admin">admin </span>
+                    <span *ngIf="!user.admin && !user.manager">client </span>
+                </div>
+                
+            </div>
+            <button class="ban" (click)="ban(user)" *ngIf="!user.isDisabled">BAN</button>
+            <button class="ban" (click)="unban(user)" *ngIf="user.isDisabled">UNBAN</button>
+            <button class="admin" (click)="setAdmin(user)" *ngIf="!user.admin">SET ADMIN</button>
+            <button class="admin" (click)="unsetAdmin(user)" *ngIf="user.admin">UNSET ADMIN</button>
+            <button class="manager" (click)="setManager(user)" *ngIf="!user.manager">SET MANAGER</button>
+            <button class="manager" (click)="unsetManager(user)" *ngIf="user.manager">UNSET MANAGER</button>
         </div>
-        <button class="ban" (click)="ban(user)" *ngIf="!user.isDisabled">BAN</button>
-        <button class="ban" (click)="unban(user)" *ngIf="user.isDisabled">UNBAN</button>
-        <button class="admin" (click)="setAdmin(user)" *ngIf="!user.admin">SET ADMIN</button>
-        <button class="admin" (click)="unsetAdmin(user)" *ngIf="user.admin">UNSET ADMIN</button>
-        <button class="manager" (click)="setManager(user)" *ngIf="!user.manager">SET MANAGER</button>
-        <button class="manager" (click)="unsetManager(user)" *ngIf="user.manager">UNSET MANAGER</button>
-    </div>
+    </section>
 </main>

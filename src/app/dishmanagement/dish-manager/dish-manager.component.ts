@@ -14,8 +14,9 @@ export class DishManagerComponent implements OnInit {
   counter = 0;
   subscription: any;
   dishes: Dish[] = [];
-  isHidden = true;
+  isEditHidden = true;
   currentDish!: Dish;
+  isAddHidden = true;
   constructor(private dishService: DishService, private cartService: CartService, private counterService: CounterService) { }
 
   ngOnInit(): void {
@@ -36,9 +37,12 @@ export class DishManagerComponent implements OnInit {
   }
   editDish(dish: Dish){
     this.setCurrentDish(dish);
-    this.isHidden = !this.isHidden;
+    this.isEditHidden = !this.isEditHidden;
   }
   setCurrentDish(dish: Dish){
     this.currentDish = dish;
+  }
+  addDishToggle(){
+    this.isAddHidden = !this.isAddHidden;
   }
 }

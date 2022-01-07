@@ -5,14 +5,14 @@ import { AppComponent } from './app.component';
 import { DishesComponent } from './dishes/dishes.component';
 import { CurrencyComponent } from './currency/currency.component';
 import { ItemsComponent } from './items/items.component';
-import { RateComponent } from './rate/rate.component';
+import { RateComponent } from './rating/rate/rate.component';
 import { FilterComponent } from './filter/filter.component';
 import { CartComponent } from './cart/cart.component';
 import { RemoveComponent } from './dishmanagement/remove/remove.component';
 import { AddComponent } from './dishmanagement/add/add.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { StarComponent } from './star/star.component';
+import { StarComponent } from './rating/star/star.component';
 import { FilterDishesPipe } from './pipes/filterdishes.pipe';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
@@ -38,6 +38,9 @@ import { UserService } from './user-auth/user.service';
 import { AdminViewComponent } from './admin/admin-view/admin-view.component';
 import { DishManagerComponent } from './dishmanagement/dish-manager/dish-manager.component';
 import { EditDishComponent } from './dishmanagement/edit-dish/edit-dish.component';
+import { ReviewService } from './reviews/review.service';
+import { ShowRatingComponent } from './rating/show-rating/show-rating.component';
+import { RatingService } from './rating/rating.service';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,7 @@ import { EditDishComponent } from './dishmanagement/edit-dish/edit-dish.componen
     AdminViewComponent,
     DishManagerComponent,
     EditDishComponent,
+    ShowRatingComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,6 +87,8 @@ import { EditDishComponent } from './dishmanagement/edit-dish/edit-dish.componen
     PaginationService,
     AuthenticationService,
     UserService,
+    ReviewService,
+    RatingService,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,12 +1,13 @@
 * {
     box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
 }
+
 nav{
     position: sticky;
     width: 100%;
     top: 0;
     z-index: 2;
-    border-radius: 5px;
     background-color: rgb(133, 133, 133);
 }
 .list {
@@ -161,5 +162,15 @@ a{
     }
     .hamburgerlist div:active{
         background-color: #d6d4d4;
+    }
+}
+
+@media(max-width: 500px){
+    .hamburgerlist{
+        width: 60vw;
+    }
+    .hamburgerlist div {
+        font-size: 1rem;
+        padding: 15px 1rem;
     }
 }

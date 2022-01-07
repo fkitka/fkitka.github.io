@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { map, Observable, switchMap } from 'rxjs';
-import { AppUser } from '../app-user';
+import { AppUser } from './app-user';
 import { UserService } from './user.service';
 
 

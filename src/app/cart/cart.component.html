@@ -4,7 +4,7 @@
     <section class="items">
         <div class="cart-item" *ngFor="let item of items">
             <span>{{ item.quantity }} x {{ item.item.name }} </span>
-            <span>{{ item.item.price * currency.converter }} {{ currency.symbol }}</span>
+            <span>{{ item.item.price * currency.converter }}{{ currency.symbol }}</span>
         </div>  
     </section>
     <footer>
