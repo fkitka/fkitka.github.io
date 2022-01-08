@@ -112,7 +112,11 @@ a{
         transition: transform 0.4s, opacity 0.1s;
         margin-right: 10px;
     }
-
+    input:checked +label{
+        width: 90vw;
+        height: 90vh;
+        z-index: -1;
+    }
     input:checked + label span:nth-child(1){
         transform: translate(0, 10px) rotate(45deg);
     }
@@ -138,6 +142,7 @@ a{
     .hamburger input:checked ~ .hamburgerlist{
         transform: translate(-1rem, 64px);
         opacity: 1;
+        z-index: 10;
     }
     .hamburgerlist div {
         font-size: 1.5rem;
@@ -148,6 +153,7 @@ a{
     .hamburger input:checked ~ .hamburgerlist div{
         display: block;
         padding: 25px 2rem;
+        z-index: 10;
     }
     .hamburgerlist a {
         text-decoration: none;
@@ -171,6 +177,10 @@ a{
     }
     .hamburgerlist div {
         font-size: 1rem;
-        padding: 15px 1rem;
+        padding: 20px 1rem;
+    }
+    .hamburger input:checked ~ .hamburgerlist div{
+        padding: 20px 1rem;
+        font-size: 1rem;
     }
 }
