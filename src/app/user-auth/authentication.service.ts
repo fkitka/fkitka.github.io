@@ -15,7 +15,6 @@ export class AuthenticationService implements OnInit{
   readonly authState$: Observable<firebase.User | null> = this.fireAuth.authState;
   isLoggedIn = false;
   currentUser: any;
-  currentPers = "";
   isAdmin = false;
   isManager = false;
   constructor(private fireAuth: AngularFireAuth, private userService: UserService) {
@@ -39,13 +38,10 @@ export class AuthenticationService implements OnInit{
   setPersistence(type: string) {
     switch (type) {
       case "local":
-        this.currentPers = "local";
         return this.fireAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);    
       case "none":
-        this.currentPers = "none";
         return this.fireAuth.setPersistence(firebase.auth.Auth.Persistence.NONE);    
       case "session":
-        this.currentPers = "session";
         return this.fireAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION);    
       default:
         break;

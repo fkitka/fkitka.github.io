@@ -7,9 +7,8 @@ import { AuthenticationService } from '../authentication.service';
   styleUrls: ['./persistence.component.css']
 })
 export class PersistenceComponent implements OnInit {
-  authService: any;
 
-  constructor(authService: AuthenticationService) { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
