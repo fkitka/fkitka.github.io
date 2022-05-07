@@ -1,27 +1,31 @@
-# Restaurant
+### Restaurant web application using Angular and Firebase
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
 
-## Development server
+#### Starting page
+![starting page](https://drive.google.com/uc?export=view&id=1hwUOO1Z1cPwcpc8pS4sQRQzSu56iL029)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#### Starting page (mobile)
+![starting page mobile](https://drive.google.com/uc?export=view&id=1x6H4LfEHpZFvAMEQvLlZMMt0BmUsnlyh)
+#### Login page (mobile)
+![login page mobile](https://drive.google.com/uc?export=view&id=18xOLlck_S7kM2xdr-0uM5NXZdN5bM226)
 
-## Code scaffolding
+#### List of dishes with filter and custom pagination
+![dishlist](https://drive.google.com/uc?export=view&id=1ClWPS3IJKep0MvQyDgr3U-v5NrbTMLcI)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#### List of dishes (mobile)
+![dishlist mobile](https://drive.google.com/uc?export=view&id=1h5dTwzLVJ2-mGCrcIFsXKunBJNRrph2A)
 
-## Build
+#### Details of dish (mobile)
+![dishdetails](https://drive.google.com/uc?export=view&id=1dgvVaYBD_kL-BPuX7jgU1T2kDJhrGS49)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+#### Customer's cart
+![cart](https://drive.google.com/uc?export=view&id=1bx_sBp-PYD8ev22goiy_6S7dnAxbyAid)
 
-## Running unit tests
+#### Customer's cart (mobile)
+![cart mobile](https://drive.google.com/uc?export=view&id=15UCRaKKsT0QlalWtkY4_n5YsTdhe1-5r)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+#### View for manager to manage dishes
+![dishmanager](https://drive.google.com/uc?export=view&id=1DYWap21Se9KJYIP1ju2VXd2tWtbhSbHv)
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+#### View for admin to manage users
+![admin view](https://drive.google.com/uc?export=view&id=1rWj-F1MMcJ-J3LF5izWNm3UhjR6JQxrY)
